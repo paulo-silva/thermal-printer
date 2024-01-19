@@ -19,14 +19,12 @@ fn main() {
         Err(e) => panic!("Error: {}", e),
     };
 
-    print_text(&printer, &border);
     maybe_print_logo(&printer, &args);
-    print_text(&printer, text);
-    print_text(&printer, &border);
+    print_text(&printer, text, &border);
 }
 
-fn print_text(printer: &Printer, text: &String) {
-    match printer.println(text.replace("\\n", "\n")) {
+fn print_text(printer: &Printer, text: &String, border: &String) {
+    match printer.println([text.replace("\\n", "\n"), border.to_string()].join("\n")) {
         Ok(_) => (),
         Err(e) => println!("Error: {}", e),
     }
