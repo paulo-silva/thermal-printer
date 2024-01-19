@@ -30,7 +30,7 @@ fn maybe_print_logo(printer: &Printer, args: &Vec<String>) {
     if args.len() > 2 {
         let logo: &String = &args[2];
         let img = image::open(logo).unwrap();
-        let escpos_image = EscposImage::new(img, 255, Justification::Center).unwrap();
+        let escpos_image = EscposImage::new(img, 128, Justification::Center).unwrap();
         match printer.image(escpos_image) {
             Ok(_) => (), // Image should be printed
             Err(e) => println!("Error: {}", e),
